@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     var count = 0
@@ -41,19 +42,33 @@ class ViewController: UIViewController {
         
         button1.addTarget(self, action: #selector(ViewController.decrementCount), for: UIControlEvents.touchUpInside)
     }
-
+    
     @objc func incrementCount(){
-        
+        changeBackground()
         self.count += 1
         self.label.text = "\(self.count)"
     }
     
     @objc func decrementCount(){
-        
+        changeBackground()
         self.count -= 1
         self.label.text = "\(self.count)"
     }
-   
+    
+    //Displays random color background
+    func changeBackground(){
+        let red = randFloat()
+        let green = randFloat()
+        let blue = randFloat()
+        self.view.backgroundColor = UIColor.init(red: red, green: green, blue: blue, alpha: 1)
+      
+    }
+    
+    
 
 }
-
+//Generates Random CGfloat number 0.0 - 1.0
+func randFloat() -> CGFloat{
+    
+    return CGFloat(arc4random()) / CGFloat(UInt32.max)
+}
